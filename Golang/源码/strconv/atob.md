@@ -112,5 +112,72 @@ func equalIgnoreCase(s1, s2 string) bool {
 
 ## ParseFloat
 
-将字符串转为float64
+将字符串转为float64，bitSize表示64/32，不过最后都转为float64位返回。
+
+调用atof32/atof64其中对字符串每个字符进行验证，逻辑有些绕。
+
+```go
+// ParseFloat converts the string s to a floating-point number
+// with the precision specified by bitSize: 32 for float32, or 64 for float64.
+// When bitSize=32, the result still has type float64, but it will be
+// convertible to float32 without changing its value.
+func ParseFloat(s string, bitSize int) (float64, error) {
+    if !underscoreOK(s) {
+        return 0, syntaxError(fnParseFloat, s)
+    }
+    if bitSize == 32 {
+        f, err := atof32(s)
+        return float64(f), err
+    }
+    return atof64(s)
+}
+```
+
+## ParseUint
+
+将字符串数字转为uint64位
+
+参数1：需要处理的字符串
+
+参数2：转换的进制
+
+参数3：机器位数32/64
+
+```go
+func ParseUint(s string, base int, bitSize int) (uint64, error) {
+  // ...
+}
+```
+
+## ParseInt
+
+将字符串数字转为int64
+
+将字符串数字转为uint64位
+
+参数1：需要处理的字符串
+
+参数2：转换的进制
+
+参数3：机器位数32/64
+
+返回：int64, error
+
+```go
+func ParseInt(s string, base int, bitSize int) (i int64, err error) {
+	// ...
+}
+```
+
+## Atoi
+
+将字符串转为int类型
+
+类似 ParseInt(s, 10, 0)
+
+```go
+func Atoi(s string) (int, error) {
+	// ...
+}
+```
 

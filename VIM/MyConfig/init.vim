@@ -10,12 +10,13 @@
 " ===
 " === Start Basic Mappings
 " ===
+filetype plugin on
 let mapleader=" "
 let g:USER="LiJunDong"
 set hidden
 set autoindent
 set number
-set relativenumber
+" set relativenumber
 set syntax=on
 set iskeyword+=_,$,@,%,#,-
 set ignorecase
@@ -87,7 +88,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mhinz/vim-startify'
 
 " 配色
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'overcache/NeoSolarized'
 
 " 排版
 Plug 'sbdchd/neoformat'
@@ -115,8 +117,20 @@ Plug 'voldikss/vim-floaterm'
 
 call plug#end()
 
-" 主题配色
-colorscheme gruvbox
+
+" 主题配色1
+" colorscheme gruvbox
+
+" 主题配色2
+" colorscheme deep-space
+" set background=dark
+" set termguicolors
+
+" 主题配色3
+colorscheme NeoSolarized
+set background=dark
+set termguicolors
+
 " 光标所在地行颜色
 " highlight CursorLine cterm=NONE ctermbg=black ctermfg=NONE guibg=NONE guifg=NONE
 
@@ -261,3 +275,12 @@ noremap <leader>sc :source ~/.config/nvim/init.vim<CR>
 nnoremap <silent> cc  $zf%<cr>
 " term
 nnoremap <silent> term  :FloatermNew<cr>
+" 左侧行号列操作
+nnoremap <leader>nu0 :set nonu nornu signcolumn=no<CR>
+nnoremap <leader>nu1 :set nu rnu signcolumn=yes<CR>
+nnoremap <leader>nu2 :set nu nrnu signcolumn=yes<CR>
+nnoremap <leader>nu3 :set nonu rnu signcolumn=yes<CR>
+command NU0 :set nonu nornu signcolumn=no
+command NU1 :set nu rnu signcolumn=yes
+command NU2 :set nu nrnu signcolumn=yes
+command NU3 :set nonu rnu signcolumn=yes
